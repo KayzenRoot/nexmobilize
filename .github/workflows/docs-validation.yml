@@ -1,0 +1,51 @@
+name: docs-validation
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  docs-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Fetch exact event commit (public repository, no credentials)
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "KayzenRoot/nexmobilize"
+          [[ "$GITHUB_SHA" =~ ^[0-9a-f]{40}$ ]]
+          git init .
+          git remote add origin https://github.com/KayzenRoot/nexmobilize.git
+          git fetch --depth=1 origin "$GITHUB_SHA"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+      - name: Validate Source Pack
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          paths = ['README.md'] + ['docs/'+name+'.md' for name in 'api architecture backlog checkpoint commercial data-model decisions deployment dod governance overview regulatory requirements scope security test-plan ux'.split()]
+          for name in paths:
+              p = Path(name)
+              assert p.is_file() and p.stat().st_size > 0, name
+              p.read_text(encoding='utf-8')
+          readme = Path('README.md').read_text(encoding='utf-8')
+          for path in paths[1:]:
+              assert path in readme, path
+          requirements = Path('docs/requirements.md').read_text(encoding='utf-8')
+          for i in range(1, 13):
+              assert re.search(r'^R%02d\b' % i, requirements, re.M), i
+          for i in range(1, 5):
+              assert re.search(r'^NFR%02d\b' % i, requirements, re.M), i
+          backlog = Path('docs/backlog.md').read_text(encoding='utf-8')
+          for i in range(1, 9):
+              assert 'AC%02d' % i in backlog, i
+          for name in 'CORE DOM DOC AI OPS DEL UI REL PILOT'.split():
+              assert 'NMO-'+name+'-WO-001' in backlog, name
+          assert 'NMO-BOOTSTRAP-001' in backlog
+          print('SOURCE_PACK_STRUCTURE_OK: 18 documents; 12 requirements; 4 NFRs; 8 ACs; 10 WOs')
+          PY
