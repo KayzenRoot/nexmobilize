@@ -1,0 +1,6 @@
+# Scope v0.1 — PROPOSED
+NECESSARY: tenancy e RBAC; cadastro mínimo de empresa, trabalhador, contrato, local e função; requisitos versionados por contexto; upload privado e quarentena; classificação e extração assistida com origem e confiança; regras determinísticas de completude/validade; fila humana de revisão; pendências, vencimentos, notificações internas; histórico; exportação de dossiê revisado; registro manual de submissão e decisão externa com evidência; dashboard operacional e relatório de resultados; medição de uso/custos; piloto protegido.
+IMPORTANT após MVP: portal de autoatendimento do trabalhador, conectores oficiais de contratantes, notificações e-mail/WhatsApp com autorização, integração ERP/RH, faturamento automatizado.
+FUTURE: multi-país, white-label, rede de parceiros SST, integrações eSocial somente com autorização e contratos verificados, orquestração multiagente distribuída.
+OUT OF SCOPE: emissão/falsificação de certificados, diagnósticos médicos, decisão automatizada de aptidão, liberação física de acesso, assinatura por terceiros, uso de senhas compartilhadas, scraping de portais restritos, publicação de dados pessoais, pagamentos automáticos, aprovação de exigências legais sem especialista, novas despesas não autorizadas.
+MVP demo com dados sintéticos; piloto real é gate separado. Mudança de escopo via ADR e auditoria.

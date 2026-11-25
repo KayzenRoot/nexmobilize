@@ -1,0 +1,6 @@
+# Project Overview
+ID NMO-BOOTSTRAP-001. Proposta: vender operação de mobilização documental para pequenas prestadoras de manutenção, elétrica, montagem e refrigeração com múltiplas contratantes industriais. Hipótese inicial: empresas com 10–100 trabalhadores e sem equipe dedicada; região Salto/Indaiatuba/Campinas para entrevistas, expansão remota depois.
+Problema: requisitos variam por contrato, unidade, função e data; coleta incompleta, retrabalho, expiração e submissões atrasadas. Não presumimos que aprovação documental equivale a aptidão médica, habilitação legal ou permissão física de acesso.
+Resultado controlável: dossiê documental revisado e pronto, entregue no prazo acordado; submissão e acompanhamento autorizados. Resultado externo: aprovação/rejeição da contratante, registrado exclusivamente com comprovante verificável. Nunca garantir aprovação.
+Personas: proprietário da prestadora (comprador), responsável RH/SST (operador), analista NexMobilize (revisor), trabalhador (titular), representante da contratante (decisor externo). 
+North star: mobilizações com dossiê completo revisado e entregue no SLA; métricas: tempo até prontidão, taxa de retrabalho, primeira submissão aceita, atraso por terceiros, minutos humanos/caso, margem e renovação.
